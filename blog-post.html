@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Why dark UI needs a brighter accent than you think — TENTIM</title>
+<meta name="description" content="A TENTIM studio note on colour and contrast in dark interfaces.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 fill=%22%230a0a0c%22/><text x=%2250%22 y=%2266%22 font-size=%2255%22 fill=%22%23ff4d2e%22 text-anchor=%22middle%22 font-family=%22sans-serif%22>T</text></svg>">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<canvas id="t-grid" class="t-grid"></canvas>
+  <nav class="nav">
+    <div class="container nav__row">
+      <a href="index.html" class="logo">TENTIM<span>.</span></a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a href="login.html" class="btn btn--ghost btn--sm">Client Login</a>
+        <a href="contact.html" class="btn btn--solid btn--sm">Start a project</a>
+        <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </nav>
+
+
+  <header class="page-hero container">
+    <p class="breadcrumb"><a href="blog.html">Blog</a> / <span class="accent">Design</span></p>
+    <h1>Why dark UI needs a brighter accent than you think</h1>
+    <p>Published Jun 02, 2026 · 4 min read · by Tega Efe</p>
+  </header>
+  <section class="section container" style="padding-top:0;">
+    <article class="post-body">
+      <p>Most dark interfaces play it safe with their accent colour, pulling saturation down to avoid looking garish. The result is usually the opposite of what teams want: a page that reads as flat rather than confident.</p>
+      <p>On a near-black background, the eye needs a bigger jump in both lightness and saturation for a colour to register as an accent rather than a decoration. A hue that looks bold on white can disappear on a surface at 6% luminance.</p>
+      <h2>The fix we use</h2>
+      <p>We test every accent against the darkest surface in the system, not the lightest. If it still reads clearly at low opacity — for hover states, focus rings, and disabled variants — it will hold up everywhere else in the interface.</p>
+      <p>The second habit: restrict the accent to true signal moments — primary actions, active states, live data — and let everything else stay quiet. A page with one loud colour used sparingly reads as intentional. A page with three competing accents reads as unfinished.</p>
+      <h2>Where this shows up in practice</h2>
+      <p>Buttons, focus outlines, active navigation states, and status badges are the only places our systems reserve the accent for. Everything else in the interface works in tonal greys, so when the accent appears, it means something.</p>
+    </article>
+    <div class="mt-2" style="max-width:70ch; margin:3rem auto 0; text-align:center;">
+      <a href="blog.html" class="btn btn--ghost">← Back to all posts</a>
+    </div>
+  </section>
+
+    <div id="footer"></div>
+  <script src="js/loadComponents.js"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>

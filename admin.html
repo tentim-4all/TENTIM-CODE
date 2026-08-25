@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Studio Admin — TENTIM</title>
+<meta name="description" content="TENTIM internal admin dashboard — orders, clients, invoices, and access control.">
+<link rel="icon" href="Images/TENTIM LOGO.jpeg">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body data-protected="true">
+<canvas id="t-grid" class="t-grid"></canvas>
+
+  <div class="dash">
+    <aside class="dash__sidebar">
+      <a href="index.html" class="logo">TENTIM<span>.</span></a>
+      <ul class="dash__nav" data-tabs>
+        <li><a href="#" data-tab="overview" class="is-active">Overview</a></li>
+        <li><a href="#" data-tab="orders">Orders <span class="nav-badge" id="nav-orders-count">1</span></a></li>
+        <li><a href="#" data-tab="clients">Clients</a></li>
+        <li><a href="#" data-tab="invoices">Invoices</a></li>
+        <li><a href="#" data-tab="authorization">Authorization</a></li>
+        <li><a href="#" data-tab="blog">Blog posts</a></li>
+        <li><a href="#" data-tab="newsletter">Newsletter</a></li>
+      </ul>
+      <a href="index.html" class="btn btn--ghost btn--sm btn--block" style="margin-bottom:.6rem;">← Back to site</a>
+      <button class="btn btn--ghost btn--sm btn--block" data-logout>Sign out</button>
+    </aside>
+
+    <main class="dash__main">
+
+      <!-- ================= OVERVIEW ================= -->
+      <section class="dash-section is-active" id="tab-overview">
+        <div class="dash__topbar">
+          <h1>Studio Admin</h1>
+          <button class="btn btn--solid btn--sm" data-goto="clients">+ New client</button>
+        </div>
+
+        <div class="grid stat-grid">
+          <div class="stat-card"><span class="label">Active projects</span><div class="value">7</div><span class="delta">+1 this month</span></div>
+          <div class="stat-card"><span class="label">Revenue (MTD)</span><div class="value">$14.2k</div><span class="delta">+18%</span></div>
+          <div class="stat-card"><span class="label">New orders</span><div class="value" id="stat-new-orders">1</div><span class="delta">awaiting review</span></div>
+          <div class="stat-card"><span class="label">Newsletter subs</span><div class="value">1,340</div><span class="delta">+64 this week</span></div>
+        </div>
+
+        <div class="panel">
+          <div class="flex-between" style="margin-bottom:1.25rem;">
+            <h3 style="margin:0;">Recent contact form submissions</h3>
+            <span class="text-muted" style="font-family:var(--mono); font-size:.78rem;">Synced from /api/contact</span>
+          </div>
+          <table class="table">
+            <thead><tr><th>Name</th><th>Interested in</th><th>Budget</th><th>Received</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Femi Adebayo</td><td>Website / web app</td><td>$5,000 – $10,000</td><td>2h ago</td><td><span class="badge pending">New</span></td></tr>
+              <tr><td>Grace Chen</td><td>Both</td><td>$10,000+</td><td>1d ago</td><td><span class="badge ok">Replied</span></td></tr>
+              <tr><td>Marlow Studio</td><td>Ongoing retainer</td><td>$2,000 – $5,000</td><td>3d ago</td><td><span class="badge ok">Replied</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="flex-between" style="margin-bottom:1.25rem;">
+            <h3 style="margin:0;">New orders awaiting review</h3>
+            <button class="btn btn--ghost btn--sm" data-goto="orders">View all orders →</button>
+          </div>
+          <table class="table">
+            <thead><tr><th>Order</th><th>Client</th><th>Service</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>ORD-1042</td><td>Novara Coffee Roasters</td><td>Website build</td><td><span class="badge pending">In progress</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= ORDERS ================= -->
+      <section class="dash-section" id="tab-orders">
+        <div class="dash__topbar"><h1>Orders</h1></div>
+        <div class="panel">
+          <table class="table" id="admin-orders-table">
+            <thead><tr><th>Order</th><th>Client</th><th>Service</th><th>Budget</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr data-order-row="ORD-1042">
+                <td>ORD-1042</td><td>Novara Coffee Roasters</td><td>Website build</td><td>$5,000 – $10,000</td>
+                <td><span class="badge pending">In progress</span></td>
+                <td><span class="text-muted" style="font-family:var(--mono); font-size:.8rem;">Accepted</span></td>
+              </tr>
+              <tr data-order-row="ORD-1039">
+                <td>ORD-1039</td><td>Ledgr Finance</td><td>Monthly care retainer</td><td>$2,000 – $5,000</td>
+                <td><span class="badge new-order">New</span></td>
+                <td>
+                  <button class="btn btn--solid btn--sm" data-approve-order="ORD-1039">Approve</button>
+                  <button class="btn btn--ghost btn--sm" data-decline-order="ORD-1039">Decline</button>
+                </td>
+              </tr>
+              <tr data-order-row="ORD-1038">
+                <td>ORD-1038</td><td>Halcyon Records</td><td>Brand identity refresh</td><td>$2,000 – $5,000</td>
+                <td><span class="badge new-order">New</span></td>
+                <td>
+                  <button class="btn btn--solid btn--sm" data-approve-order="ORD-1038">Approve</button>
+                  <button class="btn btn--ghost btn--sm" data-decline-order="ORD-1038">Decline</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="auth-demo-note mt-2">
+            DEMO NOTE — orders shown here mirror what a client submits from their portal's "Place an order" tab. Approve/Decline update the status instantly in this demo; in production these actions would call an authenticated PATCH /api/orders/:id endpoint and notify the client.
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= CLIENTS ================= -->
+      <section class="dash-section" id="tab-clients">
+        <div class="dash__topbar"><h1>Clients</h1></div>
+        <div class="panel">
+          <table class="table">
+            <thead><tr><th>Client</th><th>Project stage</th><th>Portal access</th><th>Outstanding</th></tr></thead>
+            <tbody>
+              <tr><td>Novara Coffee Roasters</td><td>Build</td><td><span class="badge ok">Active</span></td><td>$1,200.00</td></tr>
+              <tr><td>Ledgr Finance</td><td>Launch prep</td><td><span class="badge ok">Active</span></td><td>$0.00</td></tr>
+              <tr><td>Halcyon Records</td><td>Discovery</td><td><span class="badge pending">Invited</span></td><td>$900.00</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= INVOICES ================= -->
+      <section class="dash-section" id="tab-invoices">
+        <div class="dash__topbar"><h1>Invoices</h1></div>
+        <div class="panel">
+          <table class="table">
+            <thead><tr><th>Invoice</th><th>Client</th><th>Amount</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>INV-0041</td><td>Novara Coffee Roasters</td><td>$1,800.00</td><td><span class="badge paid">Paid</span></td></tr>
+              <tr><td>INV-0052</td><td>Novara Coffee Roasters</td><td>$1,200.00</td><td><span class="badge pending">Due Jul 28</span></td></tr>
+              <tr><td>INV-0053</td><td>Halcyon Records</td><td>$900.00</td><td><span class="badge pending">Due Aug 02</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= AUTHORIZATION ================= -->
+      <section class="dash-section" id="tab-authorization">
+        <div class="dash__topbar"><h1>Authorization</h1></div>
+
+        <div class="panel">
+          <div class="flex-between" style="margin-bottom:1.25rem;">
+            <h3 style="margin:0;">Pending access requests</h3>
+            <span class="text-muted" style="font-family:var(--mono); font-size:.78rem;">From client sign-ups</span>
+          </div>
+          <table class="table" id="pending-access-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Requested role</th><th></th></tr></thead>
+            <tbody>
+              <tr data-pending-row="halcyon">
+                <td>Halcyon Records</td><td>team@halcyonrecords.co</td><td>Client</td>
+                <td>
+                  <button class="btn btn--solid btn--sm" data-approve-access="halcyon" data-name="Halcyon Records" data-email="team@halcyonrecords.co">Grant access</button>
+                  <button class="btn btn--ghost btn--sm" data-deny-access="halcyon">Deny</button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <h3>User roles &amp; permissions</h3>
+          <table class="table" id="users-table">
+            <thead><tr><th>Name</th><th>Email</th><th>Role</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr data-user-row="admin1">
+                <td>Tega Efe</td><td>tega@tentim4all.com</td>
+                <td>
+                  <select class="role-select" data-user="admin1">
+                    <option selected>Admin</option>
+                    <option>Editor</option>
+                    <option>Client</option>
+                  </select>
+                </td>
+                <td><span class="badge ok">Active</span></td>
+                <td><button class="btn btn--ghost btn--sm" data-toggle-status="admin1">Suspend</button></td>
+              </tr>
+              <tr data-user-row="client1">
+                <td>Novara Coffee Roasters</td><td>client@novara.co</td>
+                <td>
+                  <select class="role-select" data-user="client1">
+                    <option>Admin</option>
+                    <option>Editor</option>
+                    <option selected>Client</option>
+                  </select>
+                </td>
+                <td><span class="badge ok">Active</span></td>
+                <td><button class="btn btn--ghost btn--sm" data-toggle-status="client1">Suspend</button></td>
+              </tr>
+              <tr data-user-row="editor1">
+                <td>Sarah Iman</td><td>sarah@tentim4all.com</td>
+                <td>
+                  <select class="role-select" data-user="editor1">
+                    <option>Admin</option>
+                    <option selected>Editor</option>
+                    <option>Client</option>
+                  </select>
+                </td>
+                <td><span class="badge ok">Active</span></td>
+                <td><button class="btn btn--ghost btn--sm" data-toggle-status="editor1">Suspend</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <p class="form-status" id="auth-status"></p>
+          <div class="auth-demo-note mt-2">
+            DEMO NOTE — role changes and suspend/activate toggle instantly here for preview. In production, only an authenticated Admin role should reach this tab (guard it server-side with requireAuth('admin') from /backend/routes/auth.js), and every change here should be written to the users table, not just the page.
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= BLOG ================= -->
+      <section class="dash-section" id="tab-blog">
+        <div class="dash__topbar"><h1>Blog posts</h1></div>
+        <div class="panel">
+          <table class="table">
+            <thead><tr><th>Title</th><th>Tag</th><th>Published</th></tr></thead>
+            <tbody>
+              <tr><td>Why dark UI needs a brighter accent than you think</td><td>Design</td><td>Jun 02, 2026</td></tr>
+              <tr><td>Shipping a client portal without a framework war</td><td>Development</td><td>May 18, 2026</td></tr>
+              <tr><td>The brief document that saves every project</td><td>Process</td><td>Apr 27, 2026</td></tr>
+            </tbody>
+          </table>
+          <div class="auth-demo-note mt-2">
+            DEMO NOTE — connect this to /backend/routes/blog.js (POST) for a real "new post" form.
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= NEWSLETTER ================= -->
+      <section class="dash-section" id="tab-newsletter">
+        <div class="dash__topbar"><h1>Newsletter</h1></div>
+        <div class="grid stat-grid" style="grid-template-columns:repeat(3,1fr);">
+          <div class="stat-card"><span class="label">Subscribers</span><div class="value">1,340</div><span class="delta">+64 this week</span></div>
+          <div class="stat-card"><span class="label">Last send open rate</span><div class="value">48%</div><span class="delta">above average</span></div>
+          <div class="stat-card"><span class="label">Unsubscribes (30d)</span><div class="value">9</div><span class="delta">0.7%</span></div>
+        </div>
+        <div class="auth-demo-note">
+          DEMO NOTE — connect this tab to your ESP's API (Mailchimp, ConvertKit) via /backend/routes/newsletter.js for real subscriber counts and send history.
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

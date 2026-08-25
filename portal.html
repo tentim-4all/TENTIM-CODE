@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Portal — TENTIM</title>
+<meta name="description" content="Your TENTIM project overview, files, invoices, messages, and order requests.">
+<link rel="icon" href="Images/TENTIM LOGO.jpeg">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body data-protected="true" data-role="client">
+<canvas id="t-grid" class="t-grid"></canvas>
+
+  <div class="dash">
+    <aside class="dash__sidebar">
+      <a href="index.html" class="logo">TENTIM<span>.</span></a>
+      <ul class="dash__nav" data-tabs>
+        <li><a href="#" data-tab="overview" class="is-active">Overview</a></li>
+        <li><a href="#" data-tab="files">Project files</a></li>
+        <li><a href="#" data-tab="invoices">Invoices</a></li>
+        <li><a href="#" data-tab="messages">Messages</a></li>
+        <li><a href="#" data-tab="new-order">Place an order</a></li>
+        <li><a href="#" data-tab="account">Account</a></li>
+      </ul>
+      <a href="index.html" class="btn btn--ghost btn--sm btn--block" style="margin-bottom:.6rem;">← Back to site</a>
+      <button class="btn btn--ghost btn--sm btn--block" data-logout>Sign out</button>
+    </aside>
+
+    <main class="dash__main">
+
+      <!-- ================= OVERVIEW ================= -->
+      <section class="dash-section is-active" id="tab-overview">
+        <div class="dash__topbar">
+          <h1>Welcome back, Novara Coffee.</h1>
+          <button class="btn btn--solid btn--sm" data-goto="new-order">+ Place a new order</button>
+        </div>
+
+        <div class="grid stat-grid">
+          <div class="stat-card"><span class="label">Project stage</span><div class="value">Build</div><span class="delta">3 of 4 phases</span></div>
+          <div class="stat-card"><span class="label">Open invoices</span><div class="value" id="stat-outstanding">$1,200</div><span class="delta" id="stat-outstanding-delta">Due Jul 28</span></div>
+          <div class="stat-card"><span class="label">Files shared</span><div class="value" id="stat-files">24</div><span class="delta">+3 this week</span></div>
+          <div class="stat-card"><span class="label">Active orders</span><div class="value" id="stat-orders">1</div><span class="delta">In progress</span></div>
+        </div>
+
+        <div class="panel">
+          <h3>Project timeline</h3>
+          <table class="table">
+            <thead><tr><th>Phase</th><th>Status</th><th>Delivered</th></tr></thead>
+            <tbody>
+              <tr><td>Discovery &amp; brief</td><td><span class="badge ok">Complete</span></td><td>Apr 02, 2026</td></tr>
+              <tr><td>Brand identity</td><td><span class="badge ok">Complete</span></td><td>Apr 29, 2026</td></tr>
+              <tr><td>Website build</td><td><span class="badge pending">In progress</span></td><td>Est. Jul 22, 2026</td></tr>
+              <tr><td>Launch &amp; handoff</td><td><span class="badge pending">Not started</span></td><td>—</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <div class="panel">
+          <div class="flex-between" style="margin-bottom:1.25rem;">
+            <h3 style="margin:0;">Recent orders</h3>
+            <button class="btn btn--ghost btn--sm" data-goto="new-order">+ New order</button>
+          </div>
+          <table class="table" id="orders-table">
+            <thead><tr><th>Order</th><th>Service</th><th>Budget</th><th>Status</th></tr></thead>
+            <tbody>
+              <tr><td>ORD-1042</td><td>Website build</td><td>$5,000 – $10,000</td><td><span class="badge pending">In progress</span></td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- ================= PROJECT FILES ================= -->
+      <section class="dash-section" id="tab-files">
+        <div class="dash__topbar"><h1>Project files</h1></div>
+        <div class="panel">
+          <table class="table">
+            <thead><tr><th>File</th><th>Type</th><th>Added</th><th></th></tr></thead>
+            <tbody>
+              <tr><td>Brand guidelines.pdf</td><td>Identity</td><td>Apr 29, 2026</td><td><button class="btn btn--ghost btn--sm" data-download="Brand guidelines.pdf">Download</button></td></tr>
+              <tr><td>Logo files (final).zip</td><td>Identity</td><td>Apr 30, 2026</td><td><button class="btn btn--ghost btn--sm" data-download="Logo files (final).zip">Download</button></td></tr>
+              <tr><td>Homepage design v3.fig</td><td>Website</td><td>Jun 14, 2026</td><td><button class="btn btn--ghost btn--sm" data-download="Homepage design v3.fig">Download</button></td></tr>
+              <tr><td>Site content draft.docx</td><td>Website</td><td>Jun 20, 2026</td><td><button class="btn btn--ghost btn--sm" data-download="Site content draft.docx">Download</button></td></tr>
+            </tbody>
+          </table>
+          <div class="auth-demo-note mt-2">
+            DEMO NOTE — "Download" just confirms the click here. In production, these would be real signed file URLs (e.g. from S3 or your storage provider), served from /backend once files are uploaded there.
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= INVOICES ================= -->
+      <section class="dash-section" id="tab-invoices">
+        <div class="dash__topbar"><h1>Invoices</h1></div>
+        <div class="panel">
+          <table class="table" id="invoices-table">
+            <thead><tr><th>Invoice</th><th>Amount</th><th>Status</th><th></th></tr></thead>
+            <tbody>
+              <tr>
+                <td>INV-0041</td><td>$1,800.00</td>
+                <td><span class="badge paid">Paid</span></td>
+                <td><button class="btn btn--ghost btn--sm" data-view-invoice="INV-0041">View</button></td>
+              </tr>
+              <tr data-invoice-row="INV-0052">
+                <td>INV-0052</td><td>$1,200.00</td>
+                <td><span class="badge pending">Due Jul 28</span></td>
+                <td><button class="btn btn--solid btn--sm" data-pay="INV-0052" data-amount="1200">Pay now</button></td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="auth-demo-note mt-2">
+            DEMO NOTE — "Pay now" opens a simulated checkout below. A production build would create a real Stripe Checkout session via /backend/routes/payments.js and redirect there instead.
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= MESSAGES ================= -->
+      <section class="dash-section" id="tab-messages">
+        <div class="dash__topbar"><h1>Messages</h1></div>
+        <div class="panel">
+          <div class="msg-thread" id="msg-thread">
+            <div class="msg them"><p>Hi! The homepage design draft is ready for your review — check the Project Files tab.</p><span class="msg-time">Studio · Jul 14, 10:02am</span></div>
+            <div class="msg me"><p>Looks great, just a couple of tweaks — can we make the hero text bigger?</p><span class="msg-time">You · Jul 14, 2:41pm</span></div>
+            <div class="msg them"><p>Done — pushed an updated version, take a look when you can.</p><span class="msg-time">Studio · Jul 15, 9:18am</span></div>
+          </div>
+          <form id="msg-form" class="msg-form">
+            <input type="text" id="msg-input" placeholder="Type a message…" required autocomplete="off">
+            <button type="submit" class="btn btn--solid btn--sm">Send</button>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= PLACE AN ORDER ================= -->
+      <section class="dash-section" id="tab-new-order">
+        <div class="dash__topbar"><h1>Place a new order</h1></div>
+        <div class="panel" style="max-width:640px;">
+          <form id="order-form">
+            <div class="field">
+              <label for="o-name">Project name</label>
+              <input id="o-name" type="text" required placeholder="e.g. Novara Coffee — Summer Menu Refresh">
+            </div>
+            <div class="field-row">
+              <div class="field">
+                <label for="o-service">Service</label>
+                <select id="o-service" required>
+                  <option value="">Select a service…</option>
+                  <option>Brand identity refresh</option>
+                  <option>Additional website pages</option>
+                  <option>E-commerce integration</option>
+                  <option>Monthly care retainer</option>
+                  <option>Other / custom request</option>
+                </select>
+              </div>
+              <div class="field">
+                <label for="o-budget">Budget range</label>
+                <select id="o-budget" required>
+                  <option>Under $2,000</option>
+                  <option>$2,000 – $5,000</option>
+                  <option>$5,000 – $10,000</option>
+                  <option>$10,000+</option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <label for="o-deadline">Preferred deadline</label>
+              <input id="o-deadline" type="date" required>
+            </div>
+            <div class="field">
+              <label for="o-details">Project description</label>
+              <textarea id="o-details" required placeholder="What do you need built or designed? Include any must-haves."></textarea>
+            </div>
+            <div class="field">
+              <label for="o-files">Reference files <span class="text-muted" style="text-transform:none; letter-spacing:0;">(optional — logos, briefs, inspiration, up to 5 files)</span></label>
+              <input id="o-files" type="file" multiple accept=".pdf,.doc,.docx,.png,.jpg,.jpeg,.fig,.zip">
+              <div id="o-files-list" class="file-list"></div>
+            </div>
+            <button type="submit" class="btn btn--solid btn--block">Submit order →</button>
+            <p class="form-status" id="order-status"></p>
+          </form>
+        </div>
+      </section>
+
+      <!-- ================= ACCOUNT ================= -->
+      <section class="dash-section" id="tab-account">
+        <div class="dash__topbar"><h1>Account</h1></div>
+        <div class="panel" style="max-width:640px;">
+          <form id="account-form">
+            <div class="field-row">
+              <div class="field"><label for="a-name">Contact name</label><input id="a-name" type="text" value="Amaka Ude"></div>
+              <div class="field"><label for="a-company">Company</label><input id="a-company" type="text" value="Novara Coffee Roasters"></div>
+            </div>
+            <div class="field"><label for="a-email">Email</label><input id="a-email" type="email" value="client@novara.co"></div>
+            <div class="field"><label for="a-pass">New password</label><input id="a-pass" type="password" placeholder="Leave blank to keep current password"></div>
+            <button type="submit" class="btn btn--solid">Save changes</button>
+            <p class="form-status" id="account-status"></p>
+          </form>
+        </div>
+      </section>
+
+    </main>
+  </div>
+
+  <!-- ================= PAYMENT MODAL ================= -->
+  <div class="modal-overlay" id="pay-modal">
+    <div class="modal-box">
+      <button class="modal-close" id="pay-modal-close" aria-label="Close">×</button>
+      <p class="eyebrow" style="margin-bottom:1.25rem;">Pay invoice <span id="pay-modal-invoice"></span></p>
+      <form id="pay-form">
+        <div class="field"><label>Amount</label><input type="text" id="pay-amount-display" disabled></div>
+        <div class="field"><label for="p-card">Card number</label><input id="p-card" type="text" placeholder="4242 4242 4242 4242" required></div>
+        <div class="field-row">
+          <div class="field"><label for="p-exp">Expiry</label><input id="p-exp" type="text" placeholder="MM/YY" required></div>
+          <div class="field"><label for="p-cvc">CVC</label><input id="p-cvc" type="text" placeholder="123" required></div>
+        </div>
+        <button type="submit" class="btn btn--solid btn--block" id="pay-submit-btn">Pay now →</button>
+        <p class="form-status" id="pay-status"></p>
+      </form>
+      <div class="auth-demo-note mt-2">
+        DEMO NOTE — no real card is charged here. This simulates the Stripe Checkout flow described in /backend/routes/payments.js.
+      </div>
+    </div>
+  </div>
+
+<script src="js/main.js"></script>
+</body>
+</html>

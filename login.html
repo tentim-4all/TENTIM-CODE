@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Client Login — TENTIM</title>
+<meta name="description" content="Sign in to your TENTIM client portal.">
+<link rel="icon" href="Images/TENTIM LOGO.jpeg">
+<link rel="stylesheet" href="css/style.css">
+
+</head>
+<body>
+<canvas id="t-grid" class="t-grid"></canvas>
+  <nav class="nav">
+    <div class="container nav__row">
+      <a href="index.html" class="logo">TENTIM<span>.</span></a>
+      <ul class="nav__links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="portfolio.html">Portfolio</a></li>
+        <li><a href="services.html">Services</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="blog.html">Blog</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+      <div class="nav__cta">
+        <a href="login.html" class="btn btn--ghost btn--sm">Client Login</a>
+        <a href="contact.html" class="btn btn--solid btn--sm">Start a project</a>
+        <button class="nav__toggle" aria-label="Menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </nav>
+
+
+  <div class="auth-shell">
+    <div class="auth-card">
+      <a href="index.html" class="logo">TENTIM<span>.</span></a>
+      <p class="eyebrow" style="margin-bottom:1.75rem;">Sign In</p>
+      <form id="login-form">
+        <div class="field"><label for="l-email">Email</label><input id="l-email" type="email" required value="client@novara.co"></div>
+        <div class="field"><label for="l-pass">Password</label><input id="l-pass" type="password" required value="demo-password"></div>
+        <div class="field">
+          <label for="l-role">Sign in as</label>
+          <select id="l-role">
+            <option value="client">Client</option>
+            <option value="admin">Admin</option>
+          </select>
+        </div>
+        <button type="submit" class="btn btn--solid btn--block">Sign in →</button>
+        <p class="form-status"></p>
+      </form>
+      <p class="auth-switch">New client? <a href="signup.html">Create an account</a></p>
+      <div class="auth-demo-note">
+        DEMO NOTE — this form simulates a sign-in for preview purposes (no real account system is wired up yet).
+        Any email/password submits successfully and routes to the portal matching the role selected above.
+        Production build needs real authentication and a real "admin" role check on the backend — see /backend/routes/auth.js.
+      </div>
+    </div>
+  </div>
+
+    <div id="footer"></div>
+  <script src="js/loadComponents.js"></script>
+
+<script src="js/main.js"></script>
+</body>
+</html>
